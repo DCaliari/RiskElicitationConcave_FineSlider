@@ -43,7 +43,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=7.00, doc=""
 )
 
-PARTICIPANT_FIELDS = ['factor_numbers', 'pM_star', 'pL_star', 'pH_star', 'pLMH_1', 'pHML_2', 'pHML_3', 'random_bool_list']
+PARTICIPANT_FIELDS = ['factor_numbers', 'pM_star', 'pL_star', 'pH_star', 'pLMH_1', 'pLMH_2', 'pLMH_3', 'random_bool_list']
 SESSION_FIELDS = []
 
 # ISO-639 code
