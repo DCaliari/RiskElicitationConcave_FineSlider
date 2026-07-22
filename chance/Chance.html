@@ -84,7 +84,7 @@
                 <canvas class="center" id="graph" style="width:550px; height:400px; max-width:550px; max-height:400px"></canvas>
 
                 <div class="slidecontainer">
-                    <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+                    <input type="range" min="0" max="1000" value="500" step="1" class="slider" id="slider">
                 </div>
 
             </td>
@@ -200,7 +200,7 @@
         const m_min = m0-(R/Math.sqrt(6))
         const m_max = m0+(R/Math.sqrt(6))
 
-        const values = generateData(0, 1.01, 0.01);
+        const values = generateData(0, 1.001, 0.001);
         const xValues = values[0]
         const yValues_m = values[1]
         const yValues_h = values[2]
@@ -250,7 +250,7 @@
                 if (sliderValue>-1){
                     this_ctx.save();
                     this_ctx.beginPath();
-                    const mod = 5.04 // between 1 and 5.47
+                    const mod = 0.504 // between 1 and 5.47
                     this_ctx.moveTo(sliderValue * mod + 45, 0);
                     this_ctx.lineTo(sliderValue * mod + 45, 400);
                     this_ctx.strokeStyle = 'grey';
@@ -509,8 +509,8 @@
             var yValuesH = []
             var yValuesL = []
             for (let x = i1; x <= i2; x += step) {
-                x = Math.round(x*100)/100
-                xValues.push(Math.round(x*100)/100)
+                x = Math.round(x*1000)/1000
+                xValues.push(Math.round(x*1000)/1000)
                 if (variant == 'CB') {
                     pM = m_min + (m_max - m_min)*f(x, s)
                     pH = h0 + 0.5 * ((-1) * pM + m0 + Math.sqrt((-3 * Math.pow(pM, 2)) + (6 * pM * m0) - (3 * Math.pow(m0, 2)) + (2 * Math.pow(R, 2))))
