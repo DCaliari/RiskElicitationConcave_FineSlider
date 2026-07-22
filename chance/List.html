@@ -15,33 +15,34 @@
         }
         td:nth-child(4) {
             border-left: 1px solid #ccc;
-            background-color: rgba(24, 95, 165, 0.12);   /* transparent blue */
+            background-color: rgba(83, 74, 183, 0.12);   /* transparent purple */
         }
         td:nth-child(5) {
             border-right: 1px solid #ccc;
             border-left: 2px solid #888;
-            background-color: rgba(163, 45, 45, 0.12);   /* transparent red */
+            background-color: rgba(216, 90, 48, 0.12);   /* transparent orange */
         }
     </style>
 
     <table class="center" style="font-size:30px;">
         <tr style="text-align:center; font-weight:bold;">
-            <td colspan="3" style="color:#185FA5; background:none; border:none;">Option A</td>
+            <td colspan="3" style="color:#534AB7; background:none; border:none;">Option A</td>
             <td class="choiceA" style="border:none !important;"></td>
             <td class="choiceB" style="border:none !important;"></td>
-            <td colspan="3" style="color:#A32D2D; background:none; border:none;">Option B</td>
+            <td colspan="3" style="color:#993C1D; background:none; border:none;">Option B</td>
         </tr>
         <tr style="border-bottom: 2px solid #888;">
             <td><small>Chance: L=0</small></td>
             <td><small>Chance: M=10</small></td>
             <td><small>Chance: H=20</small></td>
-            <td><small style="color:#185FA5;">Option A</small></td>
-            <td><small style="color:#A32D2D;">Option B</small></td>
+            <td><small style="color:#534AB7;">Option A</small></td>
+            <td><small style="color:#993C1D;">Option B</small></td>
             <td><small>Chance: L=0</small></td>
             <td><small>Chance: M=10</small></td>
             <td><small>Chance: H=20</small></td>
         </tr>
         <tr>
+    ... rest of your table unchanged ...
             <td>{{ pLMH.0.0 }}</td>
             <td>{{ pLMH.0.1 }}</td>
             <td>{{ pLMH.0.2 }}</td>
