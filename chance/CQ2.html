@@ -1,0 +1,80 @@
+{{ block title }}
+Control Questions Part 2
+{{ endblock }}
+{{ block content }}
+
+    {{ formfield 'Q8' }}
+    {{ form.Q2_1.label }}
+    {{ form.Q2_1 }}
+    {{ form.Q2_2 }}
+    {{ form.Q2_3 }}
+    {{ form.Q2_4 }}
+    {{ formfield 'Q3' }}
+    {{ formfield 'Q9' }}
+    {{ formfield 'Q10' }}
+
+    <script>
+        const Q2_1 = document.getElementById('id_Q2_1-0')
+        if (Q2_1.checked == false) {
+            var Q2_1_check = 0
+        } else {
+            var Q2_1_check = 1
+        }
+        Q2_1.onclick = function() {
+            if (Q2_1_check == 0) {
+                Q2_1_check = 1
+            } else {
+                Q2_1.checked = false
+                Q2_1_check = 0
+            }
+        }
+
+        const Q2_2 = document.getElementById('id_Q2_2-0')
+        if (Q2_2.checked == false) {
+            var Q2_2_check = 0
+        } else {
+            var Q2_2_check = 1
+        }
+        Q2_2.onclick = function() {
+            if (Q2_2_check == 0) {
+                Q2_2_check = 1
+            } else {
+                Q2_2.checked = false
+                Q2_2_check = 0
+            }
+        }
+
+        const Q2_3 = document.getElementById('id_Q2_3-0')
+        if (Q2_3.checked == false) {
+            var Q2_3_check = 0
+        } else {
+            var Q2_3_check = 1
+        }
+        Q2_3.onclick = function() {
+            if (Q2_3_check == 0) {
+                Q2_3_check = 1
+            } else {
+                Q2_3.checked = false
+                Q2_3_check = 0
+            }
+        }
+
+        const Q2_4 = document.getElementById('id_Q2_4-0')
+        if (Q2_4.checked == false) {
+            var Q2_4_check = 0
+        } else {
+            var Q2_4_check = 1
+        }
+        Q2_4.onclick = function() {
+            if (Q2_4_check == 0) {
+                Q2_4_check = 1
+            } else {
+                Q2_4.checked = false
+                Q2_4_check = 0
+            }
+        }
+    </script>
+
+
+    {{ next_button }}
+{{ endblock }}

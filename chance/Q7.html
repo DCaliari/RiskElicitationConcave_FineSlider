@@ -1,0 +1,402 @@
+{{ block content }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        // table, th, td {
+        //     border: 1px solid black;
+        // }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .slidecontainer {
+            width: 529px;
+            margin-left: auto;
+            margin-right: 45px;
+        }
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        .slider2 {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider2::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: black;
+            cursor: pointer;
+        }
+
+        .slider2::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: black;
+            cursor: pointer;
+        }
+    </style>
+
+    {{ form.Q7.label }}
+
+    <table>
+        <tr>
+            <td style="width:700px">&nbsp;</td>
+            <td style="width:300px; text-align:right; color:grey;">
+                Round 1 of {{ number_rounds }}
+            </td>
+        </tr>
+        <tr style="height:300px">
+            <td rowspan="2">
+
+                <canvas class="center" id="graph" style="width:550px; height:400px; max-width:550px; max-height:400px"></canvas>
+
+                <div class="slidecontainer">
+                    <input type="range" min="0" max="100" value="50" class="slider" id="slider">
+                </div>
+
+            </td>
+            <td style="text-align:center; vertical-align: bottom;">
+                    <table class="center" style="width:100%; font-size:30px; vertical-align: middle;" >
+                        <tr style="border-bottom: 3px solid black;">
+                            <td>Price</td>
+                            <td>Chance</td>
+                        </tr>
+                        <tr>
+                            <td><span id="spanH_value">Value out_H</span></td>
+                            <td><span id="spanH"> </span></td>
+                        </tr>
+                        <tr>
+                            <td><span id="spanM_value">Value out_M</span></td>
+                            <td><span id="spanM"> </span></td>
+                        </tr>
+                        <tr style="border-bottom: 3px solid black;">
+                            <td><span id="spanL_value">Value out_L</span></td>
+                            <td><span id="spanL"> </span></td>
+                        </tr>
+                    </table>
+            </td>
+        </tr>
+        <tr style="height:300px">
+                <td><canvas class="center" id="pie" style="width:230px; height:230px; max-width:230px; max-height:230px"></canvas></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td style="text-align:right">
+                <button style="width:100px">
+                    Accept
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <input type="hidden" name="Q7" id="Q7" />
+
+    <script>
+        const out_H = js_vars.out_H
+        const out_M = js_vars.out_M
+        const out_L = js_vars.out_L
+        const color_H = js_vars.color_H
+        const color_M = js_vars.color_M
+        const color_L = js_vars.color_L
+        const color_G = js_vars.color_G
+
+        const s = js_vars.s
+        const R = js_vars.R
+        const MU = js_vars.MU
+        const Z = js_vars.Z
+        const K = js_vars.K
+        const in_round = js_vars.in_round
+
+        const delta = R/Math.sqrt(6)
+        const a = MU + delta
+        const b = a + delta
+        const c = a-(2*delta)
+
+        const round_number = js_vars.round_number
+
+        let factors = []
+        for (let i = 0; i <= Z; i += 1) {
+            for (let j = 0; j <= Z-i; j += 1) {
+                k=Z-i-j;
+                factors.push([i, j, k])
+            }
+        }
+
+        const rounds = (Z+1)*(Z+2)
+        const factor = factors[3]
+
+        const m0 = ((factor[0]/Z)*a) + ((factor[1]/Z)*(1-b-c)) + ((factor[2]/Z)*a)
+        const l0 = ((factor[0]/Z)*(1-a-c)) + ((factor[1]/Z)*b) + ((factor[2]/Z)*b)
+        const h0 = 1-m0-l0
+
+        const m_min = m0-(R/Math.sqrt(6))
+        const m_max = m0+(R/Math.sqrt(6))
+
+        const values = generateData(0, 1.01, 0.01);
+        const xValues = values[0]
+        const yValues_m = values[1]
+        const yValues_h = values[2]
+        const yValues_l = values[3]
+
+        display_m = yValues_m
+        display_h = yValues_h
+        display_l = yValues_l
+
+        const ctx_graph = document.getElementById('graph').getContext("2d");
+        const ctx_pie = document.getElementById('pie');
+        const slider = document.getElementById("slider");
+        const spanH = document.getElementById("spanH");
+        const spanM = document.getElementById("spanM");
+        const spanL = document.getElementById("spanL");
+        const spanH_value = document.getElementById("spanH_value");
+        const spanM_value = document.getElementById("spanM_value");
+        const spanL_value = document.getElementById("spanL_value");
+
+        spanH_value.textContent = 'H=' + out_H;
+        spanH_value.style = 'color:' + color_H;
+        spanM_value.textContent = 'M=' + out_M;
+        spanM_value.style = 'color:' + color_M;
+        spanL_value.textContent = 'L=' + out_L;
+        spanL_value.style = 'color:' + color_L;
+
+        var sliderValue = -100;
+
+        const LinePlugin = {
+            id: 'Line',
+            afterDraw: (chart) => {
+
+                const this_ctx = chart.ctx;
+                if (sliderValue>-1){
+                    this_ctx.save();
+                    this_ctx.beginPath();
+                    const mod = 5.04 // between 1 and 5.47
+                    this_ctx.moveTo(sliderValue * mod + 45, 0);
+                    this_ctx.lineTo(sliderValue * mod + 45, 400);
+                    this_ctx.strokeStyle = 'grey';
+                    this_ctx.lineWidth = 2;
+                    this_ctx.stroke();
+                }
+
+                this_ctx.textAlign = 'center';
+                this_ctx.font = '20px Arial';
+                this_ctx.textAlign = 'left';
+
+                var yMax = 1
+                var yMin = 0
+
+                    this_ctx.fillStyle = color_H;
+                    this_ctx.fillText('H', 50, (1 - yValues_h[0])*380);
+
+
+                    this_ctx.fillStyle = color_M;
+                    if (Math.abs(yValues_m[0]-yValues_h[0]) < Math.abs(yValues_m[0]-yValues_l[0])) {
+                        if (yValues_m[0] > yValues_h[0]) {
+                            this_ctx.fillText('M', 50, (1 - yValues_m[0])*380);
+                        } else {
+                            this_ctx.fillText('M', 50, (1 - yValues_m[0])*380+35);
+                        }
+                    } else {
+                        if (yValues_m[0] > yValues_l[0]) {
+                            this_ctx.fillText('M', 50, (1 - yValues_m[0])*380);
+                        } else {
+                            this_ctx.fillText('M', 50, (1 - yValues_m[0])*380+35);
+                        }
+                    }
+
+                    this_ctx.fillStyle = color_L;
+                    this_ctx.fillText('L', 50, (1 - yValues_l[0])*380+35);
+                this_ctx.restore();
+
+            }
+        };
+
+        const graph = new Chart(ctx_graph, {
+            type: "line",
+
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: 'Prob M',
+                    fill: false,
+                    pointRadius: 0,
+                    borderColor: color_M,
+                    color: color_M,
+                    data: display_m
+                    },
+                    {
+                    label: 'Prob H',
+                    fill: false,
+                    pointRadius: 0,
+                    borderColor: color_H,
+                    color: color_H,
+                    data: display_h
+                },
+                {
+                    label: 'Prob L',
+                    fill: false,
+                    pointRadius: 0,
+                    borderColor: color_L,
+                    color: color_L,
+                    data: display_l
+                }]
+            },
+            options: {
+                animation: {
+                    duration: 0
+                },
+                events: [],
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    x: {
+                        display: false,
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: {
+                        display: true,
+                        grid: {
+                            tickColor: 'black',
+                            drawOnChartArea: false,
+                        },
+                        border: {
+                            color: 'black',
+                        },
+                        min: 0,
+                        max: 1,
+                        ticks: {
+                            min: 0,
+                            max: 1,
+                            callback: function (value) {
+                                return (value / this.max * 100).toFixed(0) + '%';
+                            },
+                        },
+                    },
+                }
+            },
+            plugins: [LinePlugin]
+        });
+
+        const pie = new Chart(ctx_pie, {
+            type: "pie",
+            data: {
+                labels: ['H', 'M', 'L'],
+                datasets: [{
+                    backgroundColor: [color_H, color_M, color_L],
+                    data: [0,0,0]
+                    }]
+            },
+            options: {
+                animation: {
+                    duration: 0
+                },
+                events: [],
+                plugins: {
+                    datalabels: {
+                        display: true,
+                        align: 'end',
+                        formatter: (val, this_ctx) => {
+                            const label = this_ctx.chart.data.labels[this_ctx.dataIndex];
+                            if (sliderValue>-1){
+                                return `${label}: ${val}%`;
+                            } else {
+                                return '';
+                            }
+                        },
+                        color: 'black',
+                        backgroundColor: 'white',
+                    },
+                    legend: { display: false },
+                },
+                legend: { display: false },
+                tooltips: { enabled: false }
+            },
+            plugins: [ChartDataLabels]
+        });
+
+        function sig(Z){
+            return 1/(1+Math.pow(Math.E, -1*Z))
+        }
+
+        function f(X, S){
+            return (sig(S*(X-0.5)) - sig(-0.5*S))/(sig(0.5*S) - sig(-0.5*S))
+        }
+
+        function generateData(i1, i2, step = 1) {
+            var xValues = []
+            var yValuesM = []
+            var yValuesH = []
+            var yValuesL = []
+            for (let x = i1; x <= i2; x += step) {
+                x = Math.round(x*100)/100
+                xValues.push(Math.round(x*100)/100)
+
+                pM = m_min + (m_max - m_min)*f(x, s)
+                pH = h0 + 0.5 * ((-1) * pM + m0 + Math.sqrt((-3 * Math.pow(pM, 2)) + (6 * pM * m0) - (3 * Math.pow(m0, 2)) + (2 * Math.pow(R, 2))))
+                pL = 1 - pM - pH
+
+                yValuesM.push(pM)
+                yValuesH.push(pH)
+                yValuesL.push(pL)
+            }
+            return [xValues, yValuesM, yValuesH, yValuesL]
+        }
+
+        slider.oninput = function() {
+            sliderValue = this.value;
+
+            slider.className = "slider2";
+            graph.update();
+
+            round_H = Math.floor(yValues_h[sliderValue]*1000)/10;
+            round_L = Math.floor(yValues_l[sliderValue]*1000)/10;
+            round_M = Math.floor((1000-Math.floor(yValues_h[sliderValue]*1000)-Math.floor(yValues_l[sliderValue]*1000)))/10;
+
+            pie.data.datasets[0].data = [round_H, round_M, round_L];
+            pie.update();
+
+            spanH.textContent = round_H+"%";
+            spanM.textContent = round_M+"%";
+            spanL.textContent = round_L+"%";
+
+            document.getElementById('Q7').value = round_M;
+        }
+    </script>
+{{ endblock }}

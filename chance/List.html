@@ -1,0 +1,508 @@
+{{ block content }}
+    <style>
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table {
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        td {
+            width: 110px;
+            text-align: center;
+            padding: 4px 8px;
+        }
+        td:nth-child(4) {
+            border-left: 1px solid #ccc;
+            background-color: rgba(24, 95, 165, 0.12);   /* transparent blue */
+        }
+        td:nth-child(5) {
+            border-right: 1px solid #ccc;
+            border-left: 2px solid #888;
+            background-color: rgba(163, 45, 45, 0.12);   /* transparent red */
+        }
+    </style>
+
+    <table class="center" style="font-size:30px;">
+        <tr style="text-align:center; font-weight:bold;">
+            <td colspan="3" style="color:#185FA5; background:none; border:none;">Option A</td>
+            <td class="choiceA" style="border:none !important;"></td>
+            <td class="choiceB" style="border:none !important;"></td>
+            <td colspan="3" style="color:#A32D2D; background:none; border:none;">Option B</td>
+        </tr>
+        <tr style="border-bottom: 2px solid #888;">
+            <td><small>Chance: L=0</small></td>
+            <td><small>Chance: M=10</small></td>
+            <td><small>Chance: H=20</small></td>
+            <td><small style="color:#185FA5;">Option A</small></td>
+            <td><small style="color:#A32D2D;">Option B</small></td>
+            <td><small>Chance: L=0</small></td>
+            <td><small>Chance: M=10</small></td>
+            <td><small>Chance: H=20</small></td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.0.0 }}</td>
+            <td>{{ pLMH.0.1 }}</td>
+            <td>{{ pLMH.0.2 }}</td>
+            <td><input type="radio" id="Left_0" name="Left_0"></td>
+            <td><input type="radio" id="Right_0" name="Right_0"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.1.0 }}</td>
+            <td>{{ pLMH.1.1 }}</td>
+            <td>{{ pLMH.1.2 }}</td>
+            <td><input type="radio" id="Left_1" name="Left_1"></td>
+            <td><input type="radio" id="Right_1" name="Right_1"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.2.0 }}</td>
+            <td>{{ pLMH.2.1 }}</td>
+            <td>{{ pLMH.2.2 }}</td>
+            <td><input type="radio" id="Left_2" name="Left_2"></td>
+            <td><input type="radio" id="Right_2" name="Right_2"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.3.0 }}</td>
+            <td>{{ pLMH.3.1 }}</td>
+            <td>{{ pLMH.3.2 }}</td>
+            <td><input type="radio" id="Left_3" name="Left_3"></td>
+            <td><input type="radio" id="Right_3" name="Right_3"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.4.0 }}</td>
+            <td>{{ pLMH.4.1 }}</td>
+            <td>{{ pLMH.4.2 }}</td>
+            <td><input type="radio" id="Left_4" name="Left_4"></td>
+            <td><input type="radio" id="Right_4" name="Right_4"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.5.0 }}</td>
+            <td>{{ pLMH.5.1 }}</td>
+            <td>{{ pLMH.5.2 }}</td>
+            <td><input type="radio" id="Left_5" name="Left_5"></td>
+            <td><input type="radio" id="Right_5" name="Right_5"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.6.0 }}</td>
+            <td>{{ pLMH.6.1 }}</td>
+            <td>{{ pLMH.6.2 }}</td>
+            <td><input type="radio" id="Left_6" name="Left_6"></td>
+            <td><input type="radio" id="Right_6" name="Right_6"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.7.0 }}</td>
+            <td>{{ pLMH.7.1 }}</td>
+            <td>{{ pLMH.7.2 }}</td>
+            <td><input type="radio" id="Left_7" name="Left_7"></td>
+            <td><input type="radio" id="Right_7" name="Right_7"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.8.0 }}</td>
+            <td>{{ pLMH.8.1 }}</td>
+            <td>{{ pLMH.8.2 }}</td>
+            <td><input type="radio" id="Left_8" name="Left_8"></td>
+            <td><input type="radio" id="Right_8" name="Right_8"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.9.0 }}</td>
+            <td>{{ pLMH.9.1 }}</td>
+            <td>{{ pLMH.9.2 }}</td>
+            <td><input type="radio" id="Left_9" name="Left_9"></td>
+            <td><input type="radio" id="Right_9" name="Right_9"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+        <tr>
+            <td>{{ pLMH.10.0 }}</td>
+            <td>{{ pLMH.10.1 }}</td>
+            <td>{{ pLMH.10.2 }}</td>
+            <td><input type="radio" id="Left_10" name="Left_10"></td>
+            <td><input type="radio" id="Right_10" name="Right_10"></td>
+            <td>{{ pL_star }}</td>
+            <td>{{ pM_star }}</td>
+            <td>{{ pH_star }}</td>
+        </tr>
+    </table>
+    <p align="right">
+        <button style="width:100px">
+            Accept
+        </button>
+    </p>
+
+    <input type="hidden" name="List_left" id="List_left" />
+    <input type="hidden" name="List_right" id="List_right" />
+
+    <script>
+
+        Left_0.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            point_calc()
+        }
+        Right_0.oninput = function() {
+            document.getElementById('Left_0').checked = false
+            document.getElementById('Left_1').checked = false
+            document.getElementById('Left_2').checked = false
+            document.getElementById('Left_3').checked = false
+            document.getElementById('Left_4').checked = false
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_1').checked = true
+            document.getElementById('Right_2').checked = true
+            document.getElementById('Right_3').checked = true
+            document.getElementById('Right_4').checked = true
+            document.getElementById('Right_5').checked = true
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_1.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Left_0').checked = true
+            point_calc()
+        }
+        Right_1.oninput = function() {
+            document.getElementById('Left_1').checked = false
+            document.getElementById('Left_2').checked = false
+            document.getElementById('Left_3').checked = false
+            document.getElementById('Left_4').checked = false
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_2').checked = true
+            document.getElementById('Right_3').checked = true
+            document.getElementById('Right_4').checked = true
+            document.getElementById('Right_5').checked = true
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_2.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            point_calc()
+        }
+        Right_2.oninput = function() {
+            document.getElementById('Left_2').checked = false
+            document.getElementById('Left_3').checked = false
+            document.getElementById('Left_4').checked = false
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_3').checked = true
+            document.getElementById('Right_4').checked = true
+            document.getElementById('Right_5').checked = true
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_3.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            point_calc()
+        }
+        Right_3.oninput = function() {
+            document.getElementById('Left_3').checked = false
+            document.getElementById('Left_4').checked = false
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_4').checked = true
+            document.getElementById('Right_5').checked = true
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_4.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            point_calc()
+        }
+        Right_4.oninput = function() {
+            document.getElementById('Left_4').checked = false
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_5').checked = true
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_5.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            point_calc()
+        }
+        Right_5.oninput = function() {
+            document.getElementById('Left_5').checked = false
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_6').checked = true
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_6.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Right_6').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            document.getElementById('Left_5').checked = true
+            point_calc()
+        }
+        Right_6.oninput = function() {
+            document.getElementById('Left_6').checked = false
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_7').checked = true
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_7.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Right_6').checked = false
+            document.getElementById('Right_7').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            document.getElementById('Left_5').checked = true
+            document.getElementById('Left_6').checked = true
+            point_calc()
+        }
+        Right_7.oninput = function() {
+            document.getElementById('Left_7').checked = false
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_8').checked = true
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_8.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Right_6').checked = false
+            document.getElementById('Right_7').checked = false
+            document.getElementById('Right_8').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            document.getElementById('Left_5').checked = true
+            document.getElementById('Left_6').checked = true
+            document.getElementById('Left_7').checked = true
+            point_calc()
+        }
+        Right_8.oninput = function() {
+            document.getElementById('Left_8').checked = false
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_9').checked = true
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_9.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Right_6').checked = false
+            document.getElementById('Right_7').checked = false
+            document.getElementById('Right_8').checked = false
+            document.getElementById('Right_9').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            document.getElementById('Left_5').checked = true
+            document.getElementById('Left_6').checked = true
+            document.getElementById('Left_7').checked = true
+            document.getElementById('Left_8').checked = true
+            point_calc()
+        }
+        Right_9.oninput = function() {
+            document.getElementById('Left_9').checked = false
+            document.getElementById('Left_10').checked = false
+            document.getElementById('Right_10').checked = true
+            point_calc()
+        }
+        Left_10.oninput = function() {
+            document.getElementById('Right_0').checked = false
+            document.getElementById('Right_1').checked = false
+            document.getElementById('Right_2').checked = false
+            document.getElementById('Right_3').checked = false
+            document.getElementById('Right_4').checked = false
+            document.getElementById('Right_5').checked = false
+            document.getElementById('Right_6').checked = false
+            document.getElementById('Right_7').checked = false
+            document.getElementById('Right_8').checked = false
+            document.getElementById('Right_9').checked = false
+            document.getElementById('Right_10').checked = false
+            document.getElementById('Left_0').checked = true
+            document.getElementById('Left_1').checked = true
+            document.getElementById('Left_2').checked = true
+            document.getElementById('Left_3').checked = true
+            document.getElementById('Left_4').checked = true
+            document.getElementById('Left_5').checked = true
+            document.getElementById('Left_6').checked = true
+            document.getElementById('Left_7').checked = true
+            document.getElementById('Left_8').checked = true
+            document.getElementById('Left_9').checked = true
+            point_calc()
+        }
+        Right_10.oninput = function() {
+            document.getElementById('Left_10').checked = false
+            point_calc()
+        }
+
+        point_calc = function() {
+            left = 0
+            right = 0
+
+            if (document.getElementById('Left_0').checked) { left = left + 1 }
+            if (document.getElementById('Left_1').checked) { left = left + 1 }
+            if (document.getElementById('Left_2').checked) { left = left + 1 }
+            if (document.getElementById('Left_3').checked) { left = left + 1 }
+            if (document.getElementById('Left_4').checked) { left = left + 1 }
+            if (document.getElementById('Left_5').checked) { left = left + 1 }
+            if (document.getElementById('Left_6').checked) { left = left + 1 }
+            if (document.getElementById('Left_7').checked) { left = left + 1 }
+            if (document.getElementById('Left_8').checked) { left = left + 1 }
+            if (document.getElementById('Left_9').checked) { left = left + 1 }
+            if (document.getElementById('Left_10').checked) { left = left + 1 }
+
+            if (document.getElementById('Right_0').checked) { right = right + 1 }
+            if (document.getElementById('Right_1').checked) { right = right + 1 }
+            if (document.getElementById('Right_2').checked) { right = right + 1 }
+            if (document.getElementById('Right_3').checked) { right = right + 1 }
+            if (document.getElementById('Right_4').checked) { right = right + 1 }
+            if (document.getElementById('Right_5').checked) { right = right + 1 }
+            if (document.getElementById('Right_6').checked) { right = right + 1 }
+            if (document.getElementById('Right_7').checked) { right = right + 1 }
+            if (document.getElementById('Right_8').checked) { right = right + 1 }
+            if (document.getElementById('Right_9').checked) { right = right + 1 }
+            if (document.getElementById('Right_10').checked) { right = right + 1 }
+
+            document.getElementById('List_left').value = left;
+            document.getElementById('List_right').value = right;
+        }
+
+    </script>
+{{ endblock }}

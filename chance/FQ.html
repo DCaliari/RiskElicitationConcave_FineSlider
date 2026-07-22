@@ -1,0 +1,23 @@
+{{ block title }}
+Final Questions
+{{ endblock }}
+{{ block content }}
+    {{ formfield 'q_final_1' }}
+    {{ formfield 'q_final_2' }}
+    {{ formfield 'q_final_3' }}
+    {{ formfield 'q_final_4' }}
+    {{ formfield 'Gender' }}
+    {{ formfield 'FieldOfStudy' }}
+    {{ formfield 'YearOfBirth' }}
+    {{ formfield 'Employment' }}
+    <p>
+    {{ form.RiskPref.label }}
+    {{ for choice in form.RiskPref }}
+        {{ choice }}
+        {{ choice.label }}
+    {{ endfor }}
+    </p>
+
+
+    {{ next_button }}
+{{ endblock }}
